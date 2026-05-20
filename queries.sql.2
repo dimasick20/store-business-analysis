@@ -1,0 +1,43 @@
+SELECT ProductName, Price, CurrentStock
+FROM Products
+WHERE Price>3000;
+
+SELECT ProductName, Category, CurrentStock
+FROM Products
+WHERE CurrentStock<150
+ORDER BY CurrentStock;
+
+SELECT OrderID, OrderDate, OrderStatus
+FROM (Employees INNER JOIN (Customers INNER JOIN Orders ON Customers.CustomerID=Orders.CustomerID) ON Employees.EmployeeID=Orders.EmployeeID) INNER JOIN Products ON Orders.ProductID=Products.ProductID
+ORDER BY OrderDate DESC;
+
+SELECT FullName, City, ReturnPercent
+FROM Customers
+WHERE ReturnPercent > 20;
+
+SELECT COUNT (*) AS count_quantity
+FROM Orders;
+
+SELECT AVG(Price) AS avg_price
+FROM Products;
+
+SELECT TOP 1 ProductName, Price
+FROM Products;
+
+SELECT *
+FROM Orders INNER JOIN Returns ON Orders.OrderID = Returns.OrderID
+WHERE OrderStatus = "Возврат";
+
+SELECT SUM(Price*CurrentStock) AS [sum]
+FROM Products;
+
+SELECT ProductName, MarketplaceRating
+FROM Products
+WHERE MarketplaceRating>4.6;
+
+SELECT OrderID, OrderStatus, Orders.CustomerID
+FROM Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+SELECT ProductName, Price, CompetitorPrice
+FROM CompetitorPrices INNER JOIN Products ON CompetitorPrices.ProductID=Products.ProductID
+WHERE CompetitorPrice<Price;
